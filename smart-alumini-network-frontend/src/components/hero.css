@@ -1,0 +1,25 @@
+.anchor1 {
+  background-image: url("../../public/assets/nature.jpg");
+  background-size: cover;
+}
+
+.link {
+  color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .anchor1 {
+    width: 100%;
+  }
+  .anchor2 {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

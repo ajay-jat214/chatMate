@@ -1,0 +1,269 @@
+input:focus {
+  outline: none;
+}
+.chatlist {
+  padding-top: 90px;
+}
+.fixed {
+  position: fixed;
+}
+
+.cardstyle {
+  width: 400px;
+}
+
+.ghumao::-webkit-scrollbar {
+  display: none;
+}
+
+.ghumao {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.right {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 5px;
+  background-color: #075e54;
+  margin: 5px;
+}
+
+.left {
+  padding: 5px;
+  background-color: #e8eaf6;
+  margin: 5px;
+}
+
+.scrollll {
+  transform: rotate(180deg);
+}
+.scrolll {
+  overflow: hidden;
+  transform: rotate(180deg);
+}
+
+.messaging::-webkit-scrollbar {
+  display: none;
+}
+
+.messaging {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.left {
+  max-width: 70%;
+  display: inline-block;
+  min-height: 50px;
+  border-radius: 15px;
+}
+
+.right {
+  max-width: 70%;
+  display: inline-block;
+  min-height: 50px;
+  border-radius: 15px;
+  margin-left: 550px;
+  max-width: 60%;
+  position: relative;
+  margin-left: 50%;
+  min-height: 50px;
+  color: white;
+  border-radius: 15px;
+}
+
+.blue {
+  background-color: #0078d7;
+  color: white;
+}
+
+.hey {
+  color: black;
+}
+
+.wall {
+  /* background-image: url("../../public/assets/wall.jpg"); */
+  background-size:cover;
+  scroll-behavior: smooth;
+  height:442px;
+}
+
+
+.ghumao {
+  /* background-image: url("/assets/wall.jpg"); */
+  background-size: cover;
+}
+
+.rotate{
+  transform: rotateX(180deg);
+}
+
+.rotateY {
+  transform: rotateY(180deg);
+}
+.main4 {
+  display: block;
+  width: 300px;
+  height: 470px;
+}
+
+/*
+
+@media only screen and (max-width: 850px){
+
+    .cardstyle{
+        display:block;
+        height: 470px;
+    }
+    .ghumao{
+        width:250px;
+    }
+    .side{
+        width:250px;
+    }
+}
+
+@media only screen and (max-width: 630px){
+
+
+    .cardstyle1{
+        background: white;
+        color:white;
+    }
+    .cardstyle{
+        width:77px;
+    }
+    .ghumao{
+        width:77px;
+    }
+    .side{
+        width:77px;
+    }
+    .ajeeb{
+        position: absolute;
+  
+    }
+    .notifications{
+        position: relative;
+        top:-5px;
+    }
+}
+
+@media only screen and (max-width: 500px){
+
+
+    .cardstyle1{
+        background: white;
+        color:white;
+    }
+    .okk{
+        width:100%;
+    }
+    .F{
+        width:77px;
+    }
+    .cardstyle{
+        width:77px;
+    }
+    .side{
+        width:77px;
+    }
+
+}
+@media only screen and (max-width: 400px){
+
+
+
+   .cardstyle1{
+        background: white;
+        color:white;
+    }
+    .okk{
+        width:100%;
+    }
+    .cardstyle{
+        width:66px;
+
+    }
+    .ghumao{
+        width:66px;
+    }
+    .side{
+        width:66px;
+    }
+}*/
+
+.sccroll {
+  overflow-x: scroll;
+  overflow-y: none;
+  overflow-y: hidden;
+  min-height: 300px;
+}
+
+/*@media only screen and (max-width: 500px){
+
+    .main{
+        display:flex;
+        flex:wrap;
+    }
+
+}
+
+@media only screen and (min-width: 800px){
+
+    .right{
+        margin-right: 60px;
+        min-height:50px;
+    }
+    .left{
+        margin-left: 60px;
+        min-height:50px;
+    }
+
+    .hero{
+        margin-bottom:20px ;
+    }
+
+}
+
+@media only screen and (min-width:750px ){
+
+    .left{
+        max-width:500px;
+        padding-left:20px;
+        padding-right: 20px
+    }
+    
+    .right{
+        padding-left: 20px;
+        padding-right:20px;
+    }
+
+}
+
+@media only screen and (max-width: 500px){
+
+    .rok{
+        position:relative;
+        left:-30px;
+    }
+    .messi{
+        position:relative;
+        left:-14px;
+    }
+    .hehe{
+        position:relative;
+        left:-20px;
+    }
+}
+
+@media only screen and (max-width: 345px){
+
+    .hehe{
+        width:290px;
+    }
+
+}
+*/

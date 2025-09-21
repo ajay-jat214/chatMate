@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
+}
+
+.box {
+  text-align: center;
+}
+.prev {
+  margin-left: 15px;
+}
+
+.gridItem-navigation{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.gridItem-user{
+  display: flex;
+  justify-content: flex-end;
+}

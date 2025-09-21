@@ -1,0 +1,275 @@
+.demo-app {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 1500px;
+}
+
+.cardstyle {
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  padding: 4px;
+}
+
+.card-box-shadow1 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.sccroll {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.eventSection {
+  padding: 4px;
+  position: relative;
+  top: -90px;
+}
+
+.yoo {
+  overflow: scroll;
+  height: 656px;
+  overflow-x: hidden;
+  width: 400px;
+}
+
+.yoo::-webkit-scrollbar {
+  display: none;
+}
+
+.yoo {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.demo-app-sidebar {
+  max-width: 60%;
+}
+
+@media only screen and (max-width: 1350px) {
+  .cardstyle {
+    width: 200px;
+  }
+
+  .demo-app-sidebar {
+    max-width: 60%;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .cardstyle {
+    width: 200px;
+  }
+  /*    .demo-app-main{
+        position:relative;
+        margin-top:-700px;
+    }*/
+
+  .demo-app-sidebar {
+    max-width: 60%;
+  }
+  .demo-app {
+    height: 1650px;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .cardstyle {
+    width: 200px;
+  }
+  /*    .demo-app-main{
+    	position:relative;
+    	margin-top:-700px;
+    }*/
+
+  .demo-app-sidebar {
+    max-width: 60%;
+  }
+  .demo-app {
+    height: 1650px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .demo-app {
+    height: 1500px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .demo-app-sidebar {
+    max-width: 300px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .events {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 704px) {
+  .events {
+    width: 100%;
+    height: 1500px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .events {
+    width: 100%;
+    height: 1500px;
+  }
+}
+
+.loading {
+  position: relative;
+  margin-top: -500px;
+}
+
+.yoo {
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+/*5ee311da29bbf86db4a3bdb6*/
+/*eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTk1YjgzZDc0YTE1MWZmY2VhNmJjOCIsImlhdCI6MTU5ODE5MjQ0OSwiZXhwIjoxNjAwNzg0NDQ5fQ.FoIRisO0qVhtInVOv4ATaAUrtm51m5jOsMxoVhzMDjc*/
+.demo-app {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 1500px;
+}
+
+.cardstyle {
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  padding: 4px;
+}
+
+.card-box-shadow1 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.yoo {
+  overflow: scroll;
+  height: 656px;
+  overflow-x: hidden;
+  width: 400px;
+}
+
+.yoo::-webkit-scrollbar {
+  display: none;
+}
+
+.yoo {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media only screen and (max-width: 1350px) {
+  .cardstyle {
+    width: 200px;
+    height: 1500px;
+  }
+
+  .demo-app-sidebar {
+    max-width: 60%;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .cardstyle {
+    width: 200px;
+  }
+  /*    .demo-app-main{
+        position:relative;
+        margin-top:-700px;
+    }*/
+
+  .demo-app-sidebar {
+    max-width: 60%;
+  }
+  .demo-app {
+    height: 1650px;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .cardstyle {
+    width: 200px;
+  }
+  /*    .demo-app-main{
+        position:relative;
+        margin-top:-700px;
+    }*/
+
+  .demo-app-sidebar {
+    max-width: 60%;
+  }
+  .demo-app {
+    height: 1650px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .demo-app {
+    height: 1500px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .demo-app-sidebar {
+    max-width: 300px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .demo-app-sidebar {
+    max-width: 80%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .events {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 704px) {
+  .events {
+    width: 100%;
+    height: 1500px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .events {
+    width: 100%;
+    height: 1500px;
+  }
+}
+
+.loading {
+  position: relative;
+  margin-top: -500px;
+}
+
+.yoo {
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+

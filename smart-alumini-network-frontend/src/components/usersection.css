@@ -1,0 +1,19 @@
+.maxy {
+  margin: -0.3rem;
+}
+
+.searchAlumini:hover{
+  box-shadow: 1px 1.5px 1.5px 1.5px #bdbdbd;
+}
+
+
+
+.adminsignin {
+  margin-top: 4px;
+}
+
+@media only screen and (max-width: 590px) {
+  .newStyle {
+    width: 120%;
+  }
+}

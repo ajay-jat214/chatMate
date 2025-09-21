@@ -1,0 +1,288 @@
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", "Sans serif";
+}
+
+html,
+body {
+  background-color: white;
+}
+
+div.container {
+  margin: 34px auto;
+  width: 90px;
+  background-color: transparent;
+}
+
+div.dropdown {
+  position: relative;
+}
+
+div.dropdown > div.caption {
+  background-color: #f2f2f2;
+
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+div.dropdown > div.list {
+  position: absolute;
+  background-color: #f2f2f2;
+  width: 100%;
+  border-radius: 0 0 3px 3px;
+  display: none;
+}
+
+div.dropdown > div.list > div.item {
+  cursor: pointer;
+}
+
+div.dropdown > div.list > div.item.selected {
+  font-weight: bold;
+}
+
+div.dropdown > div.caption:hover,
+div.dropdown > div.list > div.item:hover {
+  background-color: rgb(83, 161, 214);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+div.dropdown.open > div.caption {
+  border-radius: 3px 3px 0 0;
+  border-bottom: solid 1px #999;
+}
+
+div.dropdown.open > div.list {
+  display: block;
+}
+
+body {
+  color: black;
+  background-color: #d3d3d3;
+  height: auto;
+}
+
+.caption {
+  color: black;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+}
+
+.list {
+  height: 1px;
+  text-align: center;
+}
+.caption {
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 80px;
+}
+.item {
+  width: 80px;
+}
+
+.app-button {
+  width: 100px;
+  margin: 0 20px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.card-box-shadow1 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-box-shadow1 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card-box-shadow2 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16), 0 5px 5px rgba(0, 0, 0, 0.22);
+}
+
+.cardstyle3 {
+  color: black;
+  background-color: white;
+}
+
+.articleIcon {
+  margin-left: 30px;
+}
+
+body {
+  color: #000000;
+  font-family: Sans-Serif;
+  padding: 30px;
+  background-color: #f6f6f6;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  color: #222222;
+}
+
+/* Dropdown */
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dd-button {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 10px 30px 10px 20px;
+  background-color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dd-button:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+}
+
+.dd-button:hover {
+  background-color: #eeeeee;
+}
+
+.dd-input {
+  display: none;
+  width: 10px;
+  height: 4px;
+}
+
+.dd-menu {
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  margin: 2px 0 0 0;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  list-style-type: none;
+}
+
+.dd-input + .dd-menu {
+  display: none;
+}
+
+.dd-input:checked + .dd-menu {
+  display: block;
+}
+
+.dd-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dd-menu li:hover {
+  background-color: #f6f6f6;
+}
+
+.dd-menu li a {
+  display: block;
+  margin: -10px -20px;
+  padding: 10px 20px;
+}
+
+.dd-menu li.divider {
+  padding: 0;
+  border-bottom: 1px solid #cccccc;
+}
+
+.section {
+  position: relative;
+  left: 40px;
+}
+.articleIcon {
+  position: relative;
+  margin-left: -500px;
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 1350px) {
+  .cardstyle {
+    width: 200px;
+  }
+
+  .demo-app-sidebar {
+    max-width: 300px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .app {
+    width: 900px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .app {
+    height: 1470px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .app {
+    height: 1600px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .app {
+    max-width: 300px;
+    height: 1060px;
+  }
+}
+
+@media only screen and (max-width: 490px) {
+  .articleIcon {
+    visibility: hidden;
+  }
+  .app {
+    height: 1550px;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 700px&&max-width:1200px) {
+  .articleIcon {
+    visibility: hidden;
+  }
+  .app {
+    height: 1550px;
+    width: 100%;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}

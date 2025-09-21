@@ -1,0 +1,1 @@
+i have a frontend build in reactjs and backend api server build using nodejs i have made a chatting system for group as well as for personal chatting. how to introduce message queues in my architecture and exactly where to introduce this queue processing model

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.241253f0.css",
+    "main.js": "/static/js/main.dfcc43fb.js",
+    "static/media/nature.jpg": "/static/media/nature.cea6e0eecbf508976549.jpg",
+    "static/media/iPhone - 1 Sec Message Sound.mp3": "/static/media/iPhone - 1 Sec Message Sound.105f820c945e71863375.mp3",
+    "index.html": "/index.html",
+    "main.241253f0.css.map": "/static/css/main.241253f0.css.map",
+    "main.dfcc43fb.js.map": "/static/js/main.dfcc43fb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.241253f0.css",
+    "static/js/main.dfcc43fb.js"
+  ]
+}
