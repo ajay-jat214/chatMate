@@ -26,7 +26,7 @@ export default class UserFormDetails extends React.Component {
     } = this.props;
     let data = {};
 
-    await fetch("http://localhost:3001/admin", {
+    await fetch("https://chatmate-kle0.onrender.com/admin", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 

@@ -12,7 +12,7 @@ import { IKImage } from 'imagekitio-react';
 import { Divider } from "antd";
 import { Avatar } from "antd";
 
-const ENDPOINT = "http://localhost:3001/";
+const ENDPOINT = "https://chatmate-kle0.onrender.com/";
 
 var cardstyle = {
   height: "60px",

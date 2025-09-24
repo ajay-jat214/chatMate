@@ -52,7 +52,7 @@ export default function Profiles({ currentPost }) {
   };
 
   const fun = () => {
-    fetch("http://localhost:3001/deleteUser", {
+    fetch("https://chatmate-kle0.onrender.com/deleteUser", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json",

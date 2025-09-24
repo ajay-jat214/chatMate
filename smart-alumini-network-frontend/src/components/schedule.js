@@ -30,7 +30,7 @@ class Schedule extends React.Component {
     };
   }
   componentDidMount =  () => {
-    fetch(`http://localhost:3001/fetchEvents?token=${localStorage.getItem('token')}`, {
+    fetch(`https://chatmate-kle0.onrender.com/fetchEvents?token=${localStorage.getItem('token')}`, {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -74,7 +74,7 @@ class Schedule extends React.Component {
   };
 
   call_back = () => {
-    fetch(`http://localhost:3001/fetchEvents?token=${localStorage.getItem('token')}`, {
+    fetch(`https://chatmate-kle0.onrender.com/fetchEvents?token=${localStorage.getItem('token')}`, {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 

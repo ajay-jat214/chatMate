@@ -72,7 +72,7 @@ function UserSection(props) {
 
   React.useEffect(() => {
     props.setupAutoLogout();
-    fetch("http://localhost:3001/getImage", {
+    fetch("https://chatmate-kle0.onrender.com/getImage", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data", 
@@ -92,7 +92,7 @@ function UserSection(props) {
   }, []);
 
   const handleUpload = async (response) => {
-      fetch(`http://localhost:3001/uploadImage?email=${props.email}&token=${localStorage.getItem("token")}`, {
+      fetch(`https://chatmate-kle0.onrender.com/uploadImage?email=${props.email}&token=${localStorage.getItem("token")}`, {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/text", 
@@ -177,7 +177,7 @@ function UserSection(props) {
             <IKContext
               publicKey="public_RELv2MmXmSGi+gzUXw/BJwsnAzw="
               urlEndpoint="https://ik.imagekit.io/jatajay004"
-              authenticationEndpoint={`http://localhost:3001/auth?email=${props.email}&token=${localStorage.getItem("token")}`}
+              authenticationEndpoint={`https://chatmate-kle0.onrender.com/auth?email=${props.email}&token=${localStorage.getItem("token")}`}
               >
               <IKUpload 
               fileName={fileName}
