@@ -10,6 +10,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
+    "build": "npm run build",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix smart_goals && npm run build --prefix smart_goals"
   },
   "author": "",
