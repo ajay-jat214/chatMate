@@ -16,7 +16,7 @@ import ScrollToBottom, { useScrollToBottom } from "react-scroll-to-bottom";
 import Grid from "@material-ui/core/Grid";
 import NotificationSound from "./iPhone - 1 Sec Message Sound.mp3";
 import { IKUpload,IKImage,IKContext } from "imagekitio-react";
-import { ThreeSixty } from "@material-ui/icons";  
+import { ThreeSixty } from "@material-ui/icons";
 
 let dataArray = [];
 let socket;
@@ -101,7 +101,7 @@ function HomePage(props) {
   const [selectedFile,setSelectedFile] = useState(null);
   const [fileName,setFileName] = useState("");
   const [sessionMessages, setSessionMessages] = useState([]);
-  const ENDPOINT = "http://localhost:3001/";
+  const ENDPOINT = "https://chatmate-kle0.onrender.com/";
   const scrollToBottom = useScrollToBottom();
   
   //to be corrected
@@ -141,7 +141,7 @@ function HomePage(props) {
   
   useEffect(() => {
     socket = io(ENDPOINT);
-    //console.log(socket);
+
     const email = props.email;
     const name = props.userNameCredentials;
     const userNameCredentials = props.userNameCredentials;
@@ -155,7 +155,7 @@ function HomePage(props) {
   }, [ENDPOINT, props]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/messaging", {
+    fetch("https://chatmate-kle0.onrender.com/messaging", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -179,7 +179,7 @@ function HomePage(props) {
   useEffect(() => {
     //console.log("tokenExpiry:",localStorage.getItem("tokenExpiry"));
     props.setupAutoLogout();
-    fetch("http://localhost:3001/fetchUsers", {
+    fetch("https://chatmate-kle0.onrender.com/fetchUsers", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -221,7 +221,7 @@ function HomePage(props) {
     })
     .catch(err=>console.log(err));
 
-    fetch("http://localhost:3001/getImage", {
+    fetch("https://chatmate-kle0.onrender.com/getImage", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data",
@@ -247,16 +247,14 @@ function HomePage(props) {
         }
       })
       .catch((err) => console.log(err));
-
   }, []);
 
   useEffect(() => {
     
     socket.on("recieveMessage", ({ emailCredentials, email, message }) => {
-      //console.log("props.email:",props.email,"::email:",email);
-      if((props.email===email)){
-        //setArray([]);
-        playAudio();
+      playAudio();
+      if(props.emailCredentials===email){
+        setArray([]);
         specialFunction1(email, emailCredentials, message);
         setMessages([...messages, { emailCredentials, message }]);
         setArray([...array,{email,emailCredentials,message}]);
@@ -271,13 +269,13 @@ function HomePage(props) {
       }
       //console.log("check online:",online);
     });
-    specialFunction1(props.email,props.emailCredentials);
+    specialFunction1(props.email,props.emailCredentials, sentMessage);
 
   }, [ENDPOINT, props.email]);
 
   const specialFunction1 =async (email,emailCredentials, message) => {
 
-      await fetch("http://localhost:3001/messaging", {
+      await fetch("https://chatmate-kle0.onrender.com/messaging", {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/json", 
@@ -307,7 +305,7 @@ function HomePage(props) {
   };
 
   const handleUpload = async (response) => {
-      fetch(`http://localhost:3001/uploadChattingImage?email=${props.emailCredentials}&token=${localStorage.getItem("token")}`, {
+      fetch(`https://chatmate-kle0.onrender.com/uploadChattingImage?email=${props.emailCredentials}&token=${localStorage.getItem("token")}`, {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/text", 
@@ -574,7 +572,7 @@ function HomePage(props) {
               <IKContext
                 publicKey="public_RELv2MmXmSGi+gzUXw/BJwsnAzw="
                 urlEndpoint="https://ik.imagekit.io/jatajay004"
-                authenticationEndpoint={`http://localhost:3001/auth?email=${props.email}&token=${localStorage.getItem("token")}`}
+                authenticationEndpoint={`https://chatmate-kle0.onrender.com/auth?email=${props.email}&token=${localStorage.getItem("token")}`}
                 >
                 <IKUpload 
                 fileName={fileName}

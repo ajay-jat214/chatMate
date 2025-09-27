@@ -30,12 +30,12 @@ redisClient.connect(console.log('redis connected'));
 
 redisClient.set('mystring', 'Hello, Redis!', (err, reply) => {
     if (err) throw err;
-    console.log(reply); // Should print "OK"
+    //console.log(reply); // Should print "OK"
 });
 // Get the string value
 redisClient.get('mystring', (err, reply) => {
     if (err) throw err;
-    console.log(reply); // Should print "Hello, Redis!"
+    //console.log(reply); // Should print "Hello, Redis!"
 });
 
 const client=mongoose.connect(
@@ -747,6 +747,7 @@ app.post("/logout",authToken, (req, res) => {
 io.on("connection", (socket) => {
   //console.log("connection established for websocket channel ");
   socket.on("join", ({ email, name }, callback) => {
+    console.log(email," joined!!");
     //if(email)
     //socket.emit('message',{email:email,text:`hey ${name} welcome to the page`});
     //socket.broadcart.to(email).emit('message','')
@@ -773,14 +774,15 @@ io.on("connection", (socket) => {
       { email, message, userName, emailCredentials, userNameCredentials },
       callback
     ) => {
-      //console.log("socket.on sendmessage: ",message);
-      //io.sockets.in(connectedUsers[email]).emit("recieveMessage", {
-      io.sockets.emit("recieveMessage", {
+      console.log("socket.on sendmessage: ",message,emailCredentials,email);
+      console.log("connectedUser: ",connectedUsers[email]);
+      io.sockets.in(email).emit("recieveMessage", {
+      //connectedUsers[email].emit("recieveMessage", {
         emailCredentials,
         email,
         message,
       });
-      //console.log("message:",message);
+      console.log("message:",message);
       Chat.find(
         {
           $or: [
