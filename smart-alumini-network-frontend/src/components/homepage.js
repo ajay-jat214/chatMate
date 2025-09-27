@@ -101,7 +101,7 @@ function HomePage(props) {
   const [selectedFile,setSelectedFile] = useState(null);
   const [fileName,setFileName] = useState("");
   const [sessionMessages, setSessionMessages] = useState([]);
-  const ENDPOINT = "http://localhost:3001/";
+  const ENDPOINT = "https://chatmate-kle0.onrender.com";
   const scrollToBottom = useScrollToBottom();
   
   //to be corrected
@@ -155,7 +155,7 @@ function HomePage(props) {
   }, [ENDPOINT, props]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/messaging", {
+    fetch("https://chatmate-kle0.onrender.com/messaging", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -179,7 +179,7 @@ function HomePage(props) {
   useEffect(() => {
     //console.log("tokenExpiry:",localStorage.getItem("tokenExpiry"));
     props.setupAutoLogout();
-    fetch("http://localhost:3001/fetchUsers", {
+    fetch("https://chatmate-kle0.onrender.com/fetchUsers", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -221,7 +221,7 @@ function HomePage(props) {
     })
     .catch(err=>console.log(err));
 
-    fetch("http://localhost:3001/getImage", {
+    fetch("https://chatmate-kle0.onrender.com/getImage", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data",
@@ -277,7 +277,7 @@ function HomePage(props) {
 
   const specialFunction1 =async (email,emailCredentials, message) => {
 
-      await fetch("http://localhost:3001/messaging", {
+      await fetch("https://chatmate-kle0.onrender.com/messaging", {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/json", 
@@ -307,7 +307,7 @@ function HomePage(props) {
   };
 
   const handleUpload = async (response) => {
-      fetch(`http://localhost:3001/uploadChattingImage?email=${props.emailCredentials}&token=${localStorage.getItem("token")}`, {
+      fetch(`https://chatmate-kle0.onrender.com/uploadChattingImage?email=${props.emailCredentials}&token=${localStorage.getItem("token")}`, {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/text", 
@@ -574,7 +574,7 @@ function HomePage(props) {
               <IKContext
                 publicKey="public_RELv2MmXmSGi+gzUXw/BJwsnAzw="
                 urlEndpoint="https://ik.imagekit.io/jatajay004"
-                authenticationEndpoint={`http://localhost:3001/auth?email=${props.email}&token=${localStorage.getItem("token")}`}
+                authenticationEndpoint={`https://chatmate-kle0.onrender.com/auth?email=${props.email}&token=${localStorage.getItem("token")}`}
                 >
                 <IKUpload 
                 fileName={fileName}
