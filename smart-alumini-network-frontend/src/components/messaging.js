@@ -31,7 +31,7 @@ class Messaging extends React.Component {
   }
 
   call = () => {
-    fetch("http://localhost:3001/messaging", {
+    fetch("https://chatmate-kle0.onrender.com/messaging", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 

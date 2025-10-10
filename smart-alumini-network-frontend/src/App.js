@@ -29,7 +29,7 @@ import values from "./components/values";
 import "./App.css";
 
 let socket;
-const ENDPOINT = "http://localhost:3001/";
+const ENDPOINT = "https://chatmate-kle0.onrender.com/";
 
 const mapStateToProps = (state) => {
   return state;
@@ -88,7 +88,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    fetch("http://localhost:3001/getImage", {
+    fetch("https://chatmate-kle0.onrender.com/getImage", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data",
@@ -113,7 +113,7 @@ class App extends Component {
     //console.log("localStorage:",localStorage);
     socket = io(ENDPOINT);
     this.setupAutoLogout();
-    fetch("http://localhost:3001/getImage", {
+    fetch("https://chatmate-kle0.onrender.com/getImage", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data",
@@ -151,7 +151,7 @@ class App extends Component {
   };
 
   handleUpload = async (response) => {
-      fetch(`http://localhost:3001/uploadImage?email=${this.props.emailDetails.emailCredentials}&token=${localStorage.getItem("token")}`, {
+      fetch(`https://chatmate-kle0.onrender.com/uploadImage?email=${this.props.emailDetails.emailCredentials}&token=${localStorage.getItem("token")}`, {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/text", 
@@ -203,7 +203,7 @@ class App extends Component {
     socket.emit("logout", { email: this.props.emailDetails.emailCredentials });
     this.props.joinedUser(-1);
     //console.log("logout jonieduser:",this.props.setUserJoin.userJoined);
-    await fetch("http://localhost:3001/logout", {
+    await fetch("https://chatmate-kle0.onrender.com/logout", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -312,7 +312,7 @@ class App extends Component {
                           <IKContext
                             publicKey="public_RELv2MmXmSGi+gzUXw/BJwsnAzw="
                             urlEndpoint="https://ik.imagekit.io/jatajay004"
-                            authenticationEndpoint={`http://localhost:3001/auth?email=${this.props.emailDetails.emailCredentials}&token=${localStorage.getItem("token")}`}
+                            authenticationEndpoint={`https://chatmate-kle0.onrender.com/auth?email=${this.props.emailDetails.emailCredentials}&token=${localStorage.getItem("token")}`}
                             >
                             <IKUpload 
                             fileName={this.state.fileName}

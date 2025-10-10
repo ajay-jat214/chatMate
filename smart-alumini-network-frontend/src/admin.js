@@ -19,7 +19,7 @@ function Admin(props) {
   const onButtonSubmit = (event) => {
     event.preventDefault();
 
-    fetch("http://localhost:3001/admin", {
+    fetch("https://chatmate-kle0.onrender.com/admin", {
       method: "post",
       headers: { Authentication: "Content-Type:application/json" },
       body: JSON.stringify({
