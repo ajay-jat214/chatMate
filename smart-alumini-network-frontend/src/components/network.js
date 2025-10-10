@@ -70,7 +70,7 @@ function Network(props) {
     userValues = [];
     setUserValues1([]);
   
-    fetch("https://chatmate-kle0.onrender.com/getImage",{
+    fetch("http://localhost:3001/getImage",{
           method: "get",
           headers: { 
             Authentication: "Content-Type:multipart/form-data",
@@ -85,7 +85,7 @@ function Network(props) {
     .catch((err) => console.log(err));
 
 
-    fetch("https://chatmate-kle0.onrender.com/fetchUsers", {
+    fetch("http://localhost:3001/fetchUsers", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:application/json", 

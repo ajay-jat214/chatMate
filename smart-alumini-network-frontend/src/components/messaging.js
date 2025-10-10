@@ -5,6 +5,7 @@ import Chat from "./chat";
 import ScrollToBottom from "react-scroll-to-bottom";
 //import ReactEmoji from 'react-emoji';
 import "./homepage.css";
+import { ContactsOutlined } from "@material-ui/icons";
 let messages = [];
 let i = 1;
 
@@ -30,7 +31,7 @@ class Messaging extends React.Component {
   }
 
   call = () => {
-    fetch("https://chatmate-kle0.onrender.com/messaging", {
+    fetch("http://localhost:3001/messaging", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -61,20 +62,23 @@ class Messaging extends React.Component {
       this.call();
     }
     
-    if (
-      this.props.array.length &&
-      this.state.messages.length !== this.props.array.length
-    ) {
-      this.setState({ messages: this.props.array });
-    }
+    // if (
+    //   this.props.array.length &&
+    //   this.state.messages.length !== this.props.array.length
+    // ) {
+    //   this.setState({ messages: this.props.array });
+    // }
     
+    //console.log("messageplacing:",this.state.email,this.props.email)
     return (
       <div className="wall messaging" style={{overflowY:"scroll",scrollbarWidth:"none",overflow:"top"}} >
         <div className="rotate">
         {
           this.state.email === this.props.email
           ? 
+            (this.props.array) &&
             this.props.array.map((message, i) => {
+            // this.state.messages.map((message, i) => {
               return <MessagePlacing value={this.props.array[i]}/>;
             })
           : 

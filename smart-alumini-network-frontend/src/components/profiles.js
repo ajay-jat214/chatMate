@@ -108,7 +108,13 @@ export default function Profiles({ currentPost }) {
     
       <Grid container direction='column' justifyContent="center" alignItem="center">
         <Grid item container spacing={3} justifyContent="center" alignItem="center">
-          {currentPost.length&&currentPost.map((values, i) => funCall(values, i))}
+          {
+            (currentPost.length)
+            ?
+              currentPost.map((values, i) => funCall(values, i))
+            :
+              <></>
+            }
         </Grid>
       </Grid>
     </div>

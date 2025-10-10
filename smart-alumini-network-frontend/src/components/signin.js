@@ -11,7 +11,7 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 
 let socket;
-const ENDPOINT = "https://chatmate-kle0.onrender.com/";
+const ENDPOINT = "http://localhost:3001/";
 
 const mapStateToProps = (state) => {return state};
 
@@ -54,7 +54,7 @@ class Signin extends React.Component {
 
       socket.emit("join", { email: this.state.signInEmail, name: this.props.userName });
 
-    fetch("https://chatmate-kle0.onrender.com/signin", {
+    fetch("http://localhost:3001/signin", {
       method: "post",
       headers: { 
         "Authentication": "Content-Type:application/json", 
@@ -79,7 +79,7 @@ class Signin extends React.Component {
       })
       .catch((err) => console.log(err));
 
-    fetch(`https://chatmate-kle0.onrender.com/getImage?email=${this.state.signInEmail}`, {
+    fetch(`http://localhost:3001/getImage?email=${this.state.signInEmail}`, {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data", 

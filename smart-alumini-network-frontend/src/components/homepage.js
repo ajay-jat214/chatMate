@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { Card } from "@material-ui/core";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { CHANGE_CHAT_SEARCH } from "./redux/constants";
 import ChatList from "./chatlist";
 import "./homepage.css";
@@ -74,7 +74,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return { 
-    search: (values) => dispatch(messageSearch(values)),
+    //search: (values) => dispatch(messageSearch(values)),
     handleImagesArray: (values) =>dispatch(setImageArray(values)),
     profileUpdateHandler : (image) => dispatch(setProfileForAccount(image)),
     joinUser : (user) => dispatch(joinUser(user)),
@@ -83,6 +83,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 function HomePage(props) {
+  const dispatch  = useDispatch();
+  let currentSelectedEmail = useRef("");
+  const selectedEmail = useSelector((state) => state.searchChat.chatSearch.email);
+  const emailSelected = selectedEmail;
   const [chatSearch, setChatSearch] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [sentMessage, setSentMessage] = useState("");
@@ -101,7 +105,7 @@ function HomePage(props) {
   const [selectedFile,setSelectedFile] = useState(null);
   const [fileName,setFileName] = useState("");
   const [sessionMessages, setSessionMessages] = useState([]);
-  const ENDPOINT = "https://chatmate-kle0.onrender.com";
+  const ENDPOINT = "http://localhost:3001/";
   const scrollToBottom = useScrollToBottom();
   
   //to be corrected
@@ -119,7 +123,9 @@ function HomePage(props) {
     if(audioPlayer.current)
       audioPlayer.current.play();
   }
-
+  const setCurrentSelectedEmail = (email) =>{
+    currentSelectedEmail.current= email;
+  }
   //to be corrected
   const profileHandler = (data,i) => {
       return {
@@ -138,24 +144,15 @@ function HomePage(props) {
           photo: "",
       }
   }
-  
+
+
   useEffect(() => {
-    socket = io(ENDPOINT);
-    //console.log(socket);
+
     const email = props.email;
     const name = props.userNameCredentials;
     const userNameCredentials = props.userNameCredentials;
-    // console.log("userJoined:",props.userJoined);
-    // if(props.userJoined === 0){
-    //   socket.emit("join", { email: props.emailCredentials, name: name });
-    //   props.joinUser(1);
-    //   console.log("yes");
-    // }
-    //console.log("joinedUser:",props);
-  }, [ENDPOINT, props]);
-
-  useEffect(() => {
-    fetch("https://chatmate-kle0.onrender.com/messaging", {
+    
+    fetch("http://localhost:3001/messaging", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -168,18 +165,24 @@ function HomePage(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.length) 
-            setMessageList(data[0].message);
+        if (data.length){ 
+          setMessageList(data[0].message);
+          setArray(data[0].message);
+        }else{
+          setArray([]);
+        }
       })
       .catch((err) => {
         setMessageList([]);
       });
-  }, [ENDPOINT, props, props.email]);
+  }, [props.email]);
 
   useEffect(() => {
+    setCurrentSelectedEmail(props.email);
+    socket = io(ENDPOINT);
     //console.log("tokenExpiry:",localStorage.getItem("tokenExpiry"));
     props.setupAutoLogout();
-    fetch("https://chatmate-kle0.onrender.com/fetchUsers", {
+    fetch("http://localhost:3001/fetchUsers", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -221,7 +224,7 @@ function HomePage(props) {
     })
     .catch(err=>console.log(err));
 
-    fetch("https://chatmate-kle0.onrender.com/getImage", {
+    fetch("http://localhost:3001/getImage", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data",
@@ -248,20 +251,45 @@ function HomePage(props) {
       })
       .catch((err) => console.log(err));
 
+      fetch("http://localhost:3001/messaging", {
+        method: "post",
+        headers: { 
+          Authentication: "Content-Type:application/json", 
+          "x-access-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          emailCredentials: props.emailCredentials,
+          email: props.email,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.length) {
+            //console.log("data:",data)
+            //dataArray = data[0].message;
+            setArray(data[0].message);
+          } else setArray([]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
   }, []);
+
 
   useEffect(() => {
     
     socket.on("recieveMessage", ({ emailCredentials, email, message }) => {
-      //console.log("props.email:",props.email,"::email:",email);
-      if((props.email===email)){
+      //console.log("currentSelectedEmail:",currentSelectedEmail);
+      playAudio();
+      if((email===props.emailCredentials)&&(currentSelectedEmail.current===emailCredentials)){
         //setArray([]);
-        playAudio();
         specialFunction1(email, emailCredentials, message);
-        setMessages([...messages, { emailCredentials, message }]);
-        setArray([...array,{email,emailCredentials,message}]);
+        //setArray((prev)=>[...prev,{email,emailCredentials,message}]);
       }
     });
+
+    
     let x=-1;
     socket.on("online",({status})=>{
       if((x==-1 || Date.now()>x)){
@@ -271,13 +299,13 @@ function HomePage(props) {
       }
       //console.log("check online:",online);
     });
-    specialFunction1(props.email,props.emailCredentials);
+    //specialFunction1(props.email,props.emailCredentials);
 
-  }, [ENDPOINT, props.email]);
+  }, [dispatch]);
 
   const specialFunction1 =async (email,emailCredentials, message) => {
 
-      await fetch("https://chatmate-kle0.onrender.com/messaging", {
+      await fetch("http://localhost:3001/messaging", {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/json", 
@@ -290,10 +318,12 @@ function HomePage(props) {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data.length) {
-            dataArray = data[0].message;
-            setArray([...data[0].message,{email:email,emailCredentials:emailCredentials,message:message},]);
-          } else setArray([]);
+          if (data.length && (props.email==emailCredentials)) {
+            setArray([...data[0].messages]);
+          } 
+          else{ 
+            setArray((prev)=>[...prev,{email:email,emailCredentials:emailCredentials,message:message}]);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -307,7 +337,8 @@ function HomePage(props) {
   };
 
   const handleUpload = async (response) => {
-      fetch(`https://chatmate-kle0.onrender.com/uploadChattingImage?email=${props.emailCredentials}&token=${localStorage.getItem("token")}`, {
+      //console.log("homepage.js:handleUpload");
+      fetch(`http://localhost:3001/uploadChattingImage?email=${props.emailCredentials}&token=${localStorage.getItem("token")}`, {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/text", 
@@ -323,8 +354,6 @@ function HomePage(props) {
       .then((res) => {
         prof = res.image;
         setProfile(prof);
-        console.log("prof:",prof);
-        //props.profileUpdateHandler(res.image);
       })
       .catch((err) => alert(err));
   };
@@ -378,8 +407,8 @@ function HomePage(props) {
   //     socket.emit("logout", { email: this.props.emailDetails.emailCredentials });
   //   }
   // }
-  //console.log("homepage online:",chatProfile);
 
+ 
   return (
     <div style={{ marginTop: "30px"}}>
       <audio ref={audioPlayer} src={NotificationSound} />
@@ -433,6 +462,7 @@ function HomePage(props) {
                 emailCredentials={props.emailCredentials}
                 email={props.email}
                 online={online}
+                setCurrentSelectedEmail={setCurrentSelectedEmail}
               />
             </Grid>
           </Grid>
@@ -525,7 +555,7 @@ function HomePage(props) {
                     <div className="rotate">
                         <Messaging
                           array={array}
-                          messages={messageList}
+                          // messages={messageList}
                           from={from}
                           to={to}
                           emailCredentials={props.emailCredentials}
@@ -574,7 +604,7 @@ function HomePage(props) {
               <IKContext
                 publicKey="public_RELv2MmXmSGi+gzUXw/BJwsnAzw="
                 urlEndpoint="https://ik.imagekit.io/jatajay004"
-                authenticationEndpoint={`https://chatmate-kle0.onrender.com/auth?email=${props.email}&token=${localStorage.getItem("token")}`}
+                authenticationEndpoint={`http://localhost:3001/auth?email=${props.email}&token=${localStorage.getItem("token")}`}
                 >
                 <IKUpload 
                 fileName={fileName}

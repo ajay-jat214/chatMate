@@ -55,7 +55,7 @@ function ChatList(props) {
     for (let i = 0; i < chat.length; i++) chat.pop();
     
       const fetchData=async()=>{
-        await fetch("https://chatmate-kle0.onrender.com/getImage", {
+        await fetch("http://localhost:3001/getImage", {
           method: "get",
           headers: { 
             Authentication: "Content-Type:multipart/form-data", 
@@ -72,7 +72,7 @@ function ChatList(props) {
         })
         .catch((err) => console.log(err));
       
-        await fetch("https://chatmate-kle0.onrender.com/fetchUsers", {
+        await fetch("http://localhost:3001/fetchUsers", {
           method: "get",
           headers: { 
             Authentication: "Content-Type:application/json",
@@ -86,7 +86,7 @@ function ChatList(props) {
             
               for (let i = 0; i < data.values.length; i++)
                 // if (props.emailCredentials !== data.values[i].email)
-                //   fetch("https://chatmate-kle0.onrender.com/fetchStamp/", {
+                //   fetch("http://localhost:3001/fetchStamp/", {
                 //     method: "post",
                 //     headers: { 
                 //       Authentication: "Content-Type:application/json", 
@@ -262,6 +262,7 @@ function ChatList(props) {
           id={id}
           notificationLength={notificationLength}
           online={props.online}
+          setCurrentSelectedEmail={props.setCurrentSelectedEmail}
         />
       ))}
     </div>

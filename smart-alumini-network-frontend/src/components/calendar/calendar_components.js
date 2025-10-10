@@ -176,7 +176,7 @@ class Calendar_Components extends React.Component {
         backgroundColor: color,
       });
 
-      fetch(" https://chatmate-kle0.onrender.com/fetchCalendar", {
+      fetch(" http://localhost:3001/fetchCalendar", {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/json",
@@ -208,7 +208,7 @@ class Calendar_Components extends React.Component {
     ) {
       clickInfo.event.remove();
 
-      fetch(" https://chatmate-kle0.onrender.com/delete", {
+      fetch(" http://localhost:3001/delete", {
         method: "post",
         headers: { 
           "Content-Type": "application/json",
@@ -234,7 +234,7 @@ class Calendar_Components extends React.Component {
     let end1 = event.event.end;
     let title1 = event.event.title;
     let color = event.event.backgroundColor;
-    return fetch(" https://chatmate-kle0.onrender.com/update", {
+    return fetch(" http://localhost:3001/update", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -269,7 +269,7 @@ class Calendar_Components extends React.Component {
         let end1 = events[i].endStr;
         let title1 = events[i].title;
         let color = events[i].backgroundColor;
-        fetch(" https://chatmate-kle0.onrender.com/update", {
+        fetch(" http://localhost:3001/update", {
           method: "post",
           headers: {
             "Content-Type": "application/json",

@@ -22,16 +22,16 @@ class MessagePlacing extends React.Component {
   }
   
   render() {
-    
+
     return (
       <div className="">
-        {this.props.emailCredentials === this.props.value.emailCredentials ? (
+        {(this.props.value) && (this.props.emailCredentials === this.props.value.emailCredentials) ? (
           <div className='white right bg-black ' >
             {this.props.value.message}
           </div>
         ) :
          (
-          <div className='left ml2'>{this.props.value.message}</div>
+          (this.props.value)&&<div className='left ml2'>{this.props.value.message}</div>
         )}
       </div>
     );

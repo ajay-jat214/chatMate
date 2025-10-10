@@ -1,35 +1,35 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { Button } from "@material-ui/core";
+import Particles from "react-particles-js";
+import io from "socket.io-client";
+import { AppBar, Toolbar, IconButton, Tooltip } from "@material-ui/core";
+import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Grid from "@material-ui/core/Grid";
+import { Card } from "@material-ui/core";
+import { IKUpload,IKImage,IKContext } from "imagekitio-react";
+import addNotification from 'react-push-notification';
+import { Notifications } from 'react-push-notification';
+
+import { setAluminiSearch, setProfileForAccount, joinUser, setFilteredSearch,setChatBackGround } from "./components/redux/actions";
+import { searchAlumini, searchFiltered, chatBG } from "./components/redux/reducer";
+
+import Admin from "./admin";
 import Navigation from "./components/navigation";
 import ProfileIcon from "./components/profileIcon";
 import Network from "./components/network";
 import HomePage from "./components/homepage";
 import UserSection from "./components/usersection";
-import "./App.css";
+import UserForm from "./components/userForm";
 import Signin from "./components/signin";
 import Register from "./components/register";
 import values from "./components/values";
-import { connect } from "react-redux";
-import { setAluminiSearch, setProfileForAccount, joinUser } from "./components/redux/actions";
-import { searchAlumini } from "./components/redux/reducer";
-import { searchFiltered, chatBG } from "./components/redux/reducer";
-import { setFilteredSearch,setChatBackGround } from "./components/redux/actions";
-import { Button } from "@material-ui/core";
-import Particles from "react-particles-js";
-import { Card } from "@material-ui/core";
-import Admin from "./admin";
-import io from "socket.io-client";
-import { AppBar, Toolbar, IconButton, Tooltip } from "@material-ui/core";
-import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { withRouter } from "react-router-dom";
-import UserForm from "./components/userForm";
-import { IKUpload,IKImage,IKContext } from "imagekitio-react";
-import Grid from "@material-ui/core/Grid";
-
+import "./App.css";
 
 let socket;
-const ENDPOINT = "https://chatmate-kle0.onrender.com/";
+const ENDPOINT = "http://localhost:3001/";
 
 const mapStateToProps = (state) => {
   return state;
@@ -63,6 +63,15 @@ const styles = {
   
 let prof='';
 
+const contextClass = {
+  success: "bg-blue-600",
+  error: "bg-red-600",
+  info: "bg-gray-600",
+  warning: "bg-orange-400",
+  default: "bg-indigo-600",
+  dark: "bg-white-600 font-gray-300",
+};
+
 class App extends Component {
   constructor() {
     super();
@@ -79,7 +88,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    fetch("https://chatmate-kle0.onrender.com/getImage", {
+    fetch("http://localhost:3001/getImage", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data",
@@ -104,7 +113,7 @@ class App extends Component {
     //console.log("localStorage:",localStorage);
     socket = io(ENDPOINT);
     this.setupAutoLogout();
-    fetch("https://chatmate-kle0.onrender.com/getImage", {
+    fetch("http://localhost:3001/getImage", {
       method: "get",
       headers: { 
         Authentication: "Content-Type:multipart/form-data",
@@ -131,6 +140,7 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
+
   rerender = (routes) => {
     this.setState({ routes: routes });
     localStorage.setItem("routes", routes);
@@ -141,8 +151,7 @@ class App extends Component {
   };
 
   handleUpload = async (response) => {
-      console.log("App.js this.props.email:",this.props.emailDetails.emailCredentials);
-      fetch(`https://chatmate-kle0.onrender.com/uploadImage?email=${this.props.emailDetails.emailCredentials}&token=${localStorage.getItem("token")}`, {
+      fetch(`http://localhost:3001/uploadImage?email=${this.props.emailDetails.emailCredentials}&token=${localStorage.getItem("token")}`, {
         method: "post",
         headers: { 
           Authentication: "Content-Type:application/text", 
@@ -156,12 +165,11 @@ class App extends Component {
       })
       .then((response) => response.json())
       .then((res) => {
-        console.log("handleUpload:",res);
         prof = res.image;
         this.state.profile=prof;
         this.props.profileUpdateHandler(res.image);
       })
-      .catch((err) => alert(err));
+      .catch((err) => {alert(err);});
   };
 
   // Handle file select
@@ -169,7 +177,7 @@ class App extends Component {
     const file = e.target.files[0];
     if (file) {
       // this.setState({ selectedFile: file });
-      console.log("Selected file:", file);
+      //console.log("Selected file:", file);
 
       // 🔹 Call your custom function here
       if (this.props.onFileSelect) {
@@ -195,7 +203,7 @@ class App extends Component {
     socket.emit("logout", { email: this.props.emailDetails.emailCredentials });
     this.props.joinedUser(-1);
     //console.log("logout jonieduser:",this.props.setUserJoin.userJoined);
-    await fetch("https://chatmate-kle0.onrender.com/logout", {
+    await fetch("http://localhost:3001/logout", {
       method: "post",
       headers: { 
         Authentication: "Content-Type:application/json", 
@@ -245,16 +253,19 @@ class App extends Component {
     // }
   };
 
+  buttonClick = (event) => {
+    addNotification({
+        title: 'Error',
+        subtitle: 'This is a subtitle',
+        message: "Failed to Upload",
+        theme: 'red',
+        native: true // when using native, your OS will handle theming.
+    });
+  };
+
   render() {
 
-    //this.setupAutoLogout();
-    // if(localStorage.getItem("tokenExpiry")){
-      
-    //   if( ((localStorage.getItem("routes") === "success")) && (localStorage.getItem("tokenExpiry") < Math.floor(Date.now()/1000)) ){
-    //     this.logout();
-    //   }
-    // }
-    //console.log("App.js Profile:",this.props.profileForAccount);
+
     return localStorage.getItem("routes") === "admin" 
     ? 
     //Admin Login
@@ -268,7 +279,7 @@ class App extends Component {
       // Signed In Page
         (
           <div>
-              
+
             <Toolbar class="flex center tc" style={{ }}> 
 
               <Grid
@@ -301,14 +312,14 @@ class App extends Component {
                           <IKContext
                             publicKey="public_RELv2MmXmSGi+gzUXw/BJwsnAzw="
                             urlEndpoint="https://ik.imagekit.io/jatajay004"
-                            authenticationEndpoint={`https://chatmate-kle0.onrender.com/auth?email=${this.props.emailDetails.emailCredentials}&token=${localStorage.getItem("token")}`}
+                            authenticationEndpoint={`http://localhost:3001/auth?email=${this.props.emailDetails.emailCredentials}&token=${localStorage.getItem("token")}`}
                             >
                             <IKUpload 
                             fileName={this.state.fileName}
                             filePath=""
                             useUniqueFileName={true}
                             onSuccess={(response)=> this.handleUpload(response)}
-                            onError={(error)=>console.log(error)}
+                            onError={(error)=>{this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));this.buttonClick(error)}}
                             />
                           </IKContext>
                           {/* <input

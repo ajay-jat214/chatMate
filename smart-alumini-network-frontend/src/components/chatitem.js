@@ -12,7 +12,7 @@ import { IKImage } from 'imagekitio-react';
 import { Divider } from "antd";
 import { Avatar } from "antd";
 
-const ENDPOINT = "https://chatmate-kle0.onrender.com/";
+const ENDPOINT = "http://localhost:3001/";
 
 var cardstyle = {
   height: "60px",
@@ -60,7 +60,7 @@ function ChatItem(props) {
     <div>
       <div className='pt2'>
         {props.emailCredentials !== props.values[props.id].email ? (
-          <div onClick={props.click.bind(null, 1)}>
+          <div onClick={()=>{props.click.bind(null, 1);props.setCurrentSelectedEmail(props.values[props.id].email);}}>
             <div
               className='flex row pl2 pb1 pt2 pointer glow:hover input-reset  bg-white black ajay h3'
               onClick={props.search.bind(null, props.values[props.id])}

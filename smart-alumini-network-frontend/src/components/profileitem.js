@@ -71,7 +71,7 @@ export default function ProfileItem({ i, values, handleOpen, name, photo }) {
   );
 }
 
-// fetch('https://chatmate-kle0.onrender.com/getImage', {
+// fetch('http://localhost:3001/getImage', {
 //               method: 'get',
 //               headers: { Authentication: 'Content-Type:multipart/form-data' },
 //           })
@@ -80,7 +80,7 @@ export default function ProfileItem({ i, values, handleOpen, name, photo }) {
 //             imageArray=data1;
 //           })
 //           .catch(err=>console.log(err));
-//   fetch('https://chatmate-kle0.onrender.com/fetchUsers', {
+//   fetch('http://localhost:3001/fetchUsers', {
 //         method: 'get',
 //         headers: { Authentication: 'Content-Type:application/json' },
 //     })
@@ -95,7 +95,7 @@ export default function ProfileItem({ i, values, handleOpen, name, photo }) {
 //                         if(data.values[i].email===imageArray.values[j].email){
 //                           prof=imageArray.values[j].image;
 //                           prof=prof.substring(15,prof.length);
-//                           prof="https://chatmate-kle0.onrender.com/uploads/"+prof;
+//                           prof="http://localhost:3001/uploads/"+prof;
 //                           userValues=[...userValues,{email:data.values[i].email,firstName:data.values[i].firstName,userName:data.values[i].userName,field:data.values[i].field,lastName:data.values[i].lastName,contact:data.values[i].phone,photo:prof}];
 //                           break;
 //                         }
